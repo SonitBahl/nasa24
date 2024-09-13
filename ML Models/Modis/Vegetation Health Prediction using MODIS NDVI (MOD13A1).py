@@ -43,13 +43,15 @@ rf_model = RandomForestRegressor(n_estimators=100, random_state=42)
 rf_model.fit(X_train, y_train)
 
 # Get user input and predict NDVI
+# Get real-world user inputs (Temperature, Precipitation, etc.)
 user_input = np.array([[
-    float(input("Enter feature 1: ")),
-    float(input("Enter feature 2: ")),
-    float(input("Enter feature 3: ")),
-    float(input("Enter feature 4: ")),
-    float(input("Enter feature 5: "))
+    float(input("Enter average temperature (°C): ")),    # Feature 1: Temperature
+    float(input("Enter total precipitation (mm): ")),    # Feature 2: Precipitation
+    float(input("Enter soil moisture (%): ")),           # Feature 3: Soil Moisture
+    float(input("Enter relative humidity (%): ")),       # Feature 4: Humidity
+    float(input("Enter elevation (m above sea level): "))# Feature 5: Elevation
 ]])
+
 predicted_ndvi = rf_model.predict(user_input)
 print(f"Predicted NDVI: {predicted_ndvi[0]}")
 
