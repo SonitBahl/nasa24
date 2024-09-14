@@ -11,6 +11,6 @@ router.post('/login', loginUser);
 router.post('/signup', signupUser);
 
 // update password route with authentication
-router.post('/updatePassword', updatePassword);
+router.post('/updatePassword', requireAuth, updatePassword);
 
 module.exports = router;
