@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 # Initialize Earth Engine
 try:
@@ -54,6 +55,17 @@ lr_model.fit(X_train, y_train)
 # Predictions
 y_pred = lr_model.predict(X_test)
 
+# Accuracy metrics
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+
+print(f"Accuracy: {accuracy}")
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
+print(f"F1 Score: {f1}")
+
 # Plotting the results
 plt.scatter(range(len(y_test)), y_test, color='blue', label='Actual (Water/Non-Water)')
 plt.plot(range(len(y_pred)), y_pred, color='red', label='Predicted (Water/Non-Water)')
@@ -63,13 +75,19 @@ plt.title('Water Detection using Logistic Regression')
 plt.legend()
 plt.show()
 
-# User input section for prediction
-print("\nEnter values for reflectance, precipitation, and temperature to predict water body:")
-reflectance_input = float(input("Reflectance (e.g., 0.1 to 0.5): "))
-precipitation_input = float(input("Precipitation (e.g., 0 to 1): "))
-temperature_input = float(input("Temperature (e.g., 0 to 1): "))
+# Hardcoded user input for prediction
+# Commenting out the dynamic input and using hardcoded values instead
+# print("\nEnter values for reflectance, precipitation, and temperature to predict water body:")
+# reflectance_input = float(input("Reflectance (e.g., 0.1 to 0.5): "))
+# precipitation_input = float(input("Precipitation (e.g., 0 to 1): "))
+# temperature_input = float(input("Temperature (e.g., 0 to 1): "))
 
-# Predict water/non-water based on user input
+# Hardcoded input values for reflectance, precipitation, and temperature
+reflectance_input = 0.3  # Example reflectance value
+precipitation_input = 0.5  # Example precipitation value
+temperature_input = 0.7  # Example temperature value
+
+# Predict water/non-water based on the hardcoded input
 user_input = np.array([[reflectance_input, precipitation_input, temperature_input]])
 prediction = lr_model.predict(user_input)
 

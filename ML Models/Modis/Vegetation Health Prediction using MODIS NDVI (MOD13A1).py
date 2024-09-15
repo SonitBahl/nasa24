@@ -3,8 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, r2_score
 
-# Initialize Earth Engine
+# Authenticate and initialize Earth Engine
 ee.Authenticate()
 
 # Initialize Earth Engine with the Cloud Project ID
@@ -13,6 +14,7 @@ try:
     print("Initialized successfully with the specified project.")
 except ee.EEException as e:
     print(f"Initialization error: {e}")
+
 # Define the region of interest
 geometry = ee.Geometry.Rectangle([74.4, 31.4, 78.0, 33.0])
 
@@ -43,20 +45,30 @@ rf_model = RandomForestRegressor(n_estimators=100, random_state=42)
 rf_model.fit(X_train, y_train)
 
 # Get user input and predict NDVI
-# Get real-world user inputs (Temperature, Precipitation, etc.)
-user_input = np.array([[
-    float(input("Enter average temperature (°C): ")),    # Feature 1: Temperature
-    float(input("Enter total precipitation (mm): ")),    # Feature 2: Precipitation
-    float(input("Enter soil moisture (%): ")),           # Feature 3: Soil Moisture
-    float(input("Enter relative humidity (%): ")),       # Feature 4: Humidity
-    float(input("Enter elevation (m above sea level): "))# Feature 5: Elevation
-]])
+# Commenting out dynamic input and hardcoding the values instead
+# user_input = np.array([[
+#     float(input("Enter average temperature (°C): ")),    # Feature 1: Temperature
+#     float(input("Enter total precipitation (mm): ")),    # Feature 2: Precipitation
+#     float(input("Enter soil moisture (%): ")),           # Feature 3: Soil Moisture
+#     float(input("Enter relative humidity (%): ")),       # Feature 4: Humidity
+#     float(input("Enter elevation (m above sea level): "))# Feature 5: Elevation
+# ]])
 
+# Hardcoded user input values
+user_input = np.array([[25.0, 50.0, 30.0, 60.0, 500.0]])  # Example values
 predicted_ndvi = rf_model.predict(user_input)
-print(f"Predicted NDVI: {predicted_ndvi[0]}")
+print(f"Predicted NDVI for the given features: {predicted_ndvi[0]}")
 
-# Predictions and plot
+# Predictions for test data
 y_pred = rf_model.predict(X_test)
+
+# Calculate accuracy metrics
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+print(f"Mean Squared Error (MSE): {mse}")
+print(f"R² Score: {r2}")
+
+# Plot actual vs predicted NDVI values
 plt.scatter(range(len(y_test)), y_test, color='green', label='Actual NDVI')
 plt.plot(range(len(y_pred)), y_pred, color='orange', label='Predicted NDVI')
 plt.xlabel('Samples')
