@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 // pages & components
 import Home from './pages/Home';
 import Explore from './pages/Explore'; 
-// import Navbar from './components/Navbar';
 import ContactUs from './pages/ContactUs';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -24,25 +23,27 @@ function App() {
     const body = document.body;
     const path = location.pathname;
 
-    // Conditional background classes for specific pages
+    // Apply background class only for specific routes
     if (path === "/explore") {
       body.classList.add("bg-explore");
-      body.classList.remove("bg-default", "bg-sports", "bg4");
+      body.classList.remove("bg-default", "bg-home", "bg-sports", "bg4");
     } else if (path === "/sports") {
       body.classList.add("bg-sports");
-      body.classList.remove("bg-default", "bg-explore", "bg4");
+      body.classList.remove("bg-default", "bg-home", "bg-explore", "bg4");
+    } else if (path === "/") {
+      body.classList.add("bg-home");
+      body.classList.remove("bg-default", "bg-explore", "bg-sports", "bg4");
     } else if (["/login", "/signup", "/contact", "/about", "/faq"].includes(path)) {
       body.classList.add("bg4");
-      body.classList.remove("bg-default", "bg-explore", "bg-sports");
+      body.classList.remove("bg-default", "bg-home", "bg-explore", "bg-sports");
     } else {
       body.classList.add("bg-default");
-      body.classList.remove("bg-explore", "bg-sports", "bg4");
+      body.classList.remove("bg-home", "bg-explore", "bg-sports", "bg4");
     }
   }, [location]);
 
   return (
     <div className="App">
-      {/* <Navbar /> */}
       <div className="pages">
         <Routes>
           <Route path="/" element={<Home />} />
