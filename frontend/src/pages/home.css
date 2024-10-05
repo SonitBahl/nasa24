@@ -1,3 +1,10 @@
+
+
+.bg-home {
+  background-color: #9fc88d;
+}
+
+
 section {
   display: flex;
   justify-content: space-between;
@@ -9,6 +16,7 @@ section {
   width: 100%;
   height: auto;
 }
+
 
 .text-container {
   flex: 1;
@@ -33,6 +41,7 @@ section {
   margin-bottom: 0.5rem;
 }
 
+
 .button-container {
   display: flex;
   gap: 0.5rem;
@@ -53,6 +62,7 @@ section {
   background-color: #4f8f34;
 }
 
+
 .image-container {
   flex: 1;
   display: flex;
@@ -64,6 +74,7 @@ section {
   height: 400px;
   background-color: #f7f7f7;
 }
+
 
 header {
   background-color: #6ab547;
@@ -107,12 +118,4 @@ header nav a.active {
   background-color: #4f8f34; 
   border: 1px solid #6ab547;
   color: white;
-}
-
-html, body {
-  height: 110%; 
-  width: 100%;
-  background-color: #9fc88d;
-  margin: 0;
-  padding-bottom: 2%;
 }
