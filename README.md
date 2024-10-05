@@ -2,4 +2,4 @@
 repository for nasa hack 2024
 
 # link to download farm simulation prototype
-https://drive.google.com/drive/folders/1Tsj6uY9QMEJk9ODe0DBKMFfI_gXGX4qZ?usp=sharing
+https://drive.google.com/file/d/1_4sirZMjIWyxgu352VLTWSuf6qy80_MK/view?usp=sharing
