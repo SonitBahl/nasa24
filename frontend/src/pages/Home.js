@@ -1,36 +1,71 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; 
-import "./home.css";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import "./home.css";
 
 const Home = () => {
+  const contactButtonRef = useRef(null); // Use ref for the contact button
+  const contactRef = useRef(null);
+
+  useEffect(() => {
+    // Smooth scroll to contact section
+    const scrollToContact = () => {
+      if (contactRef.current) {
+        contactRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    const contactButton = contactButtonRef.current;
+    if (contactButton) {
+      contactButton.addEventListener("click", scrollToContact);
+    }
+
+    // Cleanup the event listener on unmount
+    return () => {
+      if (contactButton) {
+        contactButton.removeEventListener("click", scrollToContact);
+      }
+    };
+  }, []);
+
   return (
-    <section>
-      <div className="text-container">
-        <span className="block mb-4 text-xs md:text-sm text-green-500 font-medium">
-          Soil Sense
-        </span>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam nobis in
-          error repellat voluptatibus ad.
-        </p>
-        <div className="button-container">
-          <Link to="/login">
-            <button>Login</button>
-          </Link>
-          <Link to="/signup">
-            <button>Signup</button>
-          </Link>
-          <Link to="/explore">
-            <button>Explore</button>
-          </Link>
+    <div>
+      {/* Header */}
+      <header>
+        <h1>SoilSense</h1>
+        <nav>
+          <a href="/" className="active">Home</a>
+          <a href="/about">About</a>
+          <a href="/login">Login</a>
+          <a href="/signup">Signup</a>
+        </nav>
+      </header>
+
+      {/* Main Section */}
+      <section>
+        <div className="text-container">
+          <span className="block mb-4 text-lg md:text-xl lg:text-2xl text-green-500 font-medium">
+            Soil Sense
+          </span>
+          <p>
+            SoilSense is a smart farm management tool that monitors soil health, vegetation, and rainfall data to help farmers optimize irrigation and boost crop productivity.
+          </p>
+          <div className="button-container">
+            <Link to="/explore">
+              <button>Explore</button>
+            </Link>
+            <Link to="/contactus">
+              <button>Contact</button>
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className="image-container">
-        <ShuffleGrid />
-      </div>
-    </section>
+
+        <div className="image-container">
+          <ShuffleGrid />
+        </div>
+      </section>
+
+    </div>
   );
 };
 
@@ -38,7 +73,7 @@ const shuffle = (array) => {
   let currentIndex = array.length,
     randomIndex;
 
-  while (currentIndex != 0) {
+  while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
@@ -109,3 +144,4 @@ const ShuffleGrid = () => {
 };
 
 export default Home;
+
