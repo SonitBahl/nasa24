@@ -5,7 +5,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { FaWater, FaCloudSunRain, FaSeedling, FaVirus, FaCarrot, FaCloudShowersHeavy } from "react-icons/fa";
+import { FaWater, FaCloudSunRain, FaSeedling, FaVirus, FaCarrot, FaCloudShowersHeavy, FaDownload } from "react-icons/fa"; // Changed FaCloudDownload to FaDownload
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 
@@ -44,6 +44,11 @@ const Hero = () => {
       style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)` }}
       className="relative w-full"
     >
+      {/* Scroll Down Text */}
+      <div className="absolute top-5 left-1/2 transform -translate-x-1/2 text-white text-xl font-semibold">
+        Scroll Down
+      </div>
+      
       <CenterImage />
       <ParallaxImages />
       <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-b from-zinc-950/0 to-zinc-950" />
@@ -171,6 +176,8 @@ const Schedule = () => {
         <InfoItem icon={<FaCarrot />} title="Crop Recommendation" />
         <InfoItem icon={<FaVirus />} title="Crop Disease" />
         <InfoItem icon={<FaCloudShowersHeavy />} title="Rainfall" />
+        {/* New game download box */}
+        <DownloadItem title="Download Our Game" downloadLink="https://drive.google.com/uc?export=download&id=YOUR_FILE_ID" />
       </div>
     </section>
   );
@@ -185,4 +192,21 @@ const InfoItem = ({ icon, title }) => {
   );
 };
 
+const DownloadItem = ({ title, downloadLink }) => {
+  return (
+    <div className="flex flex-col items-center justify-center bg-zinc-800 p-4 rounded-lg border border-zinc-700 text-center">
+      <button className="text-3xl mb-2">
+        <FaDownload />
+      </button>
+      <h2 className="text-lg font-bold">{title}</h2>
+      <a
+        href={"https://drive.google.com/file/d/1_4sirZMjIWyxgu352VLTWSuf6qy80_MK/view?usp=sharing"}
+        className="mt-2 text-sm text-blue-400 hover:underline"
+        download
+      >
+        Download ZIP
+      </a>
+    </div>
+  );
+};
 export default Explore;
