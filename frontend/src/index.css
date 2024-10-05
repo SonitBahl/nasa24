@@ -17,6 +17,10 @@ body {
   overflow: hidden;
 }
 
+.explore-bg {
+  background-color: black;
+}
+
 body.bg-sports {
   background-image: url('./assets/bg3.jpg'); /* Sports page background */
   background-size: cover;

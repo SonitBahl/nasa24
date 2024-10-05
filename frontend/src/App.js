@@ -11,12 +11,11 @@ import Signup from './pages/Signup';
 import Footer from './components/Footer';
 import About from './pages/about';
 import Sports from './pages/Sports'; 
-import Tennis from "./pages/Tennis.js";
-import Cricket from "./pages/Cricket.js";
-import Football from "./pages/Football.js";
-import Badminton from "./pages/Badminton.js";
-import Basketball from "./pages/Basketball.js";
-
+import Tennis from "./pages/Tennis";
+import Cricket from "./pages/Cricket";
+import Football from "./pages/Football";
+import Badminton from "./pages/Badminton";
+import Basketball from "./pages/Basketball";
 
 function App() {
   const location = useLocation();
@@ -25,6 +24,7 @@ function App() {
     const body = document.body;
     const path = location.pathname;
 
+    // Conditional background classes for specific pages
     if (path === "/explore") {
       body.classList.add("bg-explore");
       body.classList.remove("bg-default", "bg-sports", "bg4");
@@ -56,8 +56,8 @@ function App() {
           <Route path="/sports/football" element={<Football />} />
           <Route path="/sports/tennis" element={<Tennis />} />
           <Route path="/sports/badminton" element={<Badminton />} />
-
-  </Routes>
+          <Route path="/sports/basketball" element={<Basketball />} />
+        </Routes>
       </div>
       {/* <Footer /> */}
     </div>
